@@ -1,0 +1,62 @@
+Sender: LSF System <lsfadmin@cn3g47.gpu.rl.ac.uk>
+Subject: Job 763896: <Tut2> Done
+
+Job <Tut2> was submitted from host <ui1.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn3g47.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut2> was used as the working directory.
+Started at Wed Sep 18 15:10:32 2013
+Results reported at Wed Sep 18 15:10:39 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut2
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-n 1
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut2.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      1.09 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Start autotuning from nthds=32 to 1024 ...
+	 CUDA error launching with nthds=32: unspecified launch failure
+============================================================
+
+
+PS:
+
+Read file <763896.e> for stderr output of this job.
+

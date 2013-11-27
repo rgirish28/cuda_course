@@ -1,0 +1,84 @@
+Sender: LSF System <lsfadmin@cn3g47.gpu.rl.ac.uk>
+Subject: Job 764373: <Tut3> Done
+
+Job <Tut3> was submitted from host <ui1.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn3g47.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut3> was used as the working directory.
+Started at Thu Sep 19 11:07:46 2013
+Results reported at Thu Sep 19 11:07:59 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut3
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut3.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      1.86 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Copy A host->device takes 1.64627ms at 3.24406GB/s
+Copy B host->device takes 4.37789ms at 4.39163GB/s
+Copy C device->host takes 4.44016ms at 3.86611GB/s
+Kernel execution takes 12.9742ms
+Bidirectional Copy B->device,C->host takes 6.9951ms at 5.20253GB/s
+The indices are : 0 0
+The indices are : 0 1
+The indices are : 0 2
+The indices are : 3 0
+The indices are : 3 1
+The indices are : 3 2
+The indices are : 6 0
+The indices are : 6 1
+The indices are : 6 2
+The indices are : 9 0
+The indices are : 9 1
+The indices are : 9 2
+The indices are : 12 0
+The indices are : 12 1
+The indices are : 12 2
+The indices are : 15 0
+The indices are : 15 1
+The indices are : 15 2
+The indices are : 18 0
+The indices are : 18 1
+============================================================
+
+
+PS:
+
+Read file <764373.e> for stderr output of this job.
+

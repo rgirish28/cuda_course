@@ -1,0 +1,67 @@
+Sender: LSF System <lsfadmin@cn3g47.gpu.rl.ac.uk>
+Subject: Job 764377: <Tut3> Done
+
+Job <Tut3> was submitted from host <ui1.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn3g47.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut3> was used as the working directory.
+Started at Thu Sep 19 11:16:29 2013
+Results reported at Thu Sep 19 11:16:37 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut3
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut3.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      3.22 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Copy A host->device takes 1.42657ms at 3.74364GB/s
+Copy B host->device takes 3.41384ms at 5.6318GB/s
+Copy C device->host takes 3.04002ms at 5.64672GB/s
+Kernel execution takes 12.9644ms
+Bidirectional Copy B->device,C->host takes 5.4766ms at 6.64504GB/s
+The time is : 261.614
+Checking all C matrices ...
+	Error checking C_1(0,360): your val = 0, ref val = -4.18047e+11
+============================================================
+
+
+PS:
+
+Read file <764377.e> for stderr output of this job.
+

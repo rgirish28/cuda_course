@@ -1,0 +1,75 @@
+Sender: LSF System <lsfadmin@cn3g30.gpu.rl.ac.uk>
+Subject: Job 762623: <Tut1> Done
+
+Job <Tut1> was submitted from host <ui2.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn3g30.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut1> was used as the working directory.
+Started at Tue Sep 17 12:54:58 2013
+Results reported at Tue Sep 17 12:55:04 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut1
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-n 1
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut1.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      0.59 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Hello from thread: 10 0 2
+Hello from thread: 11 1 2
+Hello from thread: 12 2 2
+Hello from thread: 13 3 2
+Hello from thread: 14 4 2
+Hello from thread: 0 0 0
+Hello from thread: 1 1 0
+Hello from thread: 2 2 0
+Hello from thread: 3 3 0
+Hello from thread: 4 4 0
+Hello from thread: 5 0 1
+Hello from thread: 6 1 1
+Hello from thread: 7 2 1
+Hello from thread: 8 3 1
+Hello from thread: 9 4 1
+============================================================
+
+
+PS:
+
+Read file <762623.e> for stderr output of this job.
+

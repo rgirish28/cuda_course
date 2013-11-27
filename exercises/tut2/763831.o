@@ -1,0 +1,87 @@
+Sender: LSF System <lsfadmin@cn8g02.gpu.rl.ac.uk>
+Subject: Job 763831: <Tut2> Done
+
+Job <Tut2> was submitted from host <ui2.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn8g02.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut2> was used as the working directory.
+Started at Wed Sep 18 14:19:50 2013
+Results reported at Wed Sep 18 14:20:02 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut2
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-n 1
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut2.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      5.33 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Start autotuning from nthds=32 to 1024 ...
+	Found new best time: nthds=32, time=263.88354ms
+	Found new best time: nthds=64, time=132.29466ms
+	Found new best time: nthds=96, time=89.835938ms
+	Found new best time: nthds=128, time=68.589409ms
+	Found new best time: nthds=160, time=55.391296ms
+	Found new best time: nthds=192, time=46.646847ms
+	Found new best time: nthds=224, time=40.442017ms
+	Found new best time: nthds=256, time=35.458942ms
+	Found new best time: nthds=288, time=32.126945ms
+	Found new best time: nthds=320, time=29.203009ms
+	Found new best time: nthds=352, time=26.652544ms
+	Found new best time: nthds=384, time=25.344896ms
+	Found new best time: nthds=416, time=23.312992ms
+	Found new best time: nthds=448, time=21.782368ms
+	Found new best time: nthds=480, time=21.25264ms
+	Found new best time: nthds=512, time=19.990047ms
+	Found new best time: nthds=544, time=19.195423ms
+	Found new best time: nthds=576, time=18.779552ms
+	Found new best time: nthds=608, time=18.1656ms
+	Found new best time: nthds=640, time=17.693249ms
+	Found new best time: nthds=704, time=17.429567ms
+	Found new best time: nthds=768, time=17.369984ms
+	Found new best time: nthds=832, time=17.182943ms
+	Found new best time: nthds=896, time=17.134497ms
+	Found new best time: nthds=1024, time=17.118624ms
+... done! Best thds is 1024 with overall bandwidth of 29.207956GB/s
+============================================================
+
+
+PS:
+
+Read file <763831.e> for stderr output of this job.
+

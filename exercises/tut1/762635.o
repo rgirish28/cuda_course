@@ -1,0 +1,90 @@
+Sender: LSF System <lsfadmin@cn3g47.gpu.rl.ac.uk>
+Subject: Job 762635: <Tut1> Done
+
+Job <Tut1> was submitted from host <ui2.gpu.rl.ac.uk> by user <eistr005> in cluster <sctsc>.
+Job was executed on host(s) <cn3g47.gpu.rl.ac.uk>, in queue <emerald>, as user <eistr005> in cluster <sctsc>.
+</home/pool/eistr005> was used as the home directory.
+</home/pool/eistr005/cuda_course/exercise_src/tut1> was used as the working directory.
+Started at Tue Sep 17 13:19:53 2013
+Results reported at Tue Sep 17 13:19:54 2013
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB-o %J.o
+#BSUB-e %J.e
+#BSUB-J Tut1
+#BSUB-W 00:05
+#BSUB-M 64000
+#BSUB-n 1
+#BSUB-U nag
+
+#========================================
+# Load modules
+#========================================
+module load cuda/5.0.35
+#module load nag/gpulib
+
+#========================================
+# Run some CUDA code
+#========================================
+echo ============================================================
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/bristol/eisbr030/gpc5006n_lin64/lib
+./tut1.exe
+echo ============================================================
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      0.51 sec.
+    Max Memory :         2 MB
+    Max Swap   :        29 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+============================================================
+Hello from thread: Kernel Thread ID: 20, Block Thread ID: (0 0), Block ID: 2
+Hello from thread: Kernel Thread ID: 21, Block Thread ID: (1 0), Block ID: 2
+Hello from thread: Kernel Thread ID: 22, Block Thread ID: (0 1), Block ID: 2
+Hello from thread: Kernel Thread ID: 23, Block Thread ID: (1 1), Block ID: 2
+Hello from thread: Kernel Thread ID: 24, Block Thread ID: (0 2), Block ID: 2
+Hello from thread: Kernel Thread ID: 25, Block Thread ID: (1 2), Block ID: 2
+Hello from thread: Kernel Thread ID: 26, Block Thread ID: (0 3), Block ID: 2
+Hello from thread: Kernel Thread ID: 27, Block Thread ID: (1 3), Block ID: 2
+Hello from thread: Kernel Thread ID: 28, Block Thread ID: (0 4), Block ID: 2
+Hello from thread: Kernel Thread ID: 29, Block Thread ID: (1 4), Block ID: 2
+Hello from thread: Kernel Thread ID: 0, Block Thread ID: (0 0), Block ID: 0
+Hello from thread: Kernel Thread ID: 1, Block Thread ID: (1 0), Block ID: 0
+Hello from thread: Kernel Thread ID: 2, Block Thread ID: (0 1), Block ID: 0
+Hello from thread: Kernel Thread ID: 3, Block Thread ID: (1 1), Block ID: 0
+Hello from thread: Kernel Thread ID: 4, Block Thread ID: (0 2), Block ID: 0
+Hello from thread: Kernel Thread ID: 5, Block Thread ID: (1 2), Block ID: 0
+Hello from thread: Kernel Thread ID: 6, Block Thread ID: (0 3), Block ID: 0
+Hello from thread: Kernel Thread ID: 7, Block Thread ID: (1 3), Block ID: 0
+Hello from thread: Kernel Thread ID: 8, Block Thread ID: (0 4), Block ID: 0
+Hello from thread: Kernel Thread ID: 9, Block Thread ID: (1 4), Block ID: 0
+Hello from thread: Kernel Thread ID: 10, Block Thread ID: (0 0), Block ID: 1
+Hello from thread: Kernel Thread ID: 11, Block Thread ID: (1 0), Block ID: 1
+Hello from thread: Kernel Thread ID: 12, Block Thread ID: (0 1), Block ID: 1
+Hello from thread: Kernel Thread ID: 13, Block Thread ID: (1 1), Block ID: 1
+Hello from thread: Kernel Thread ID: 14, Block Thread ID: (0 2), Block ID: 1
+Hello from thread: Kernel Thread ID: 15, Block Thread ID: (1 2), Block ID: 1
+Hello from thread: Kernel Thread ID: 16, Block Thread ID: (0 3), Block ID: 1
+Hello from thread: Kernel Thread ID: 17, Block Thread ID: (1 3), Block ID: 1
+Hello from thread: Kernel Thread ID: 18, Block Thread ID: (0 4), Block ID: 1
+Hello from thread: Kernel Thread ID: 19, Block Thread ID: (1 4), Block ID: 1
+============================================================
+
+
+PS:
+
+Read file <762635.e> for stderr output of this job.
+

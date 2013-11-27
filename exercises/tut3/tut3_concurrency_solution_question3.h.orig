@@ -1,0 +1,88 @@
+#ifndef _TUTORIAL2_QUESTION3_H
+#define _TUTORIAL2_QUESTION3_H
+
+
+void question3(
+				int nRows,
+				int nCols,
+				int midDim,
+				int nMatrices
+				 )
+{
+	cout << endl;
+	cout << "Tutorial 3, Question 3:" << endl;
+
+	double *A = new double[nRows*midDim];
+	double *Bs = NULL;
+	double *Cs = NULL;
+	double *d_A;
+	// Need 3 B buffers and 3 C buffers, since three streams 
+    const int nStreams = 3;
+	double *d_B[nStreams], *d_C[nStreams];
+
+	// Allocate memory
+	check( cudaHostAlloc((void**)&Bs, sizeof(double)*midDim*nCols*nMatrices, cudaHostAllocDefault) );
+	check( cudaHostAlloc((void**)&Cs, sizeof(double)*nRows*nCols*nMatrices, cudaHostAllocDefault) );
+	check( cudaMalloc((void**)&d_A, sizeof(double)*nRows*midDim) );
+	for(int i=0; i<nStreams; i++) {
+		check( cudaMalloc((void**)&d_B[i], sizeof(double)*midDim*nCols) );
+		check( cudaMalloc((void**)&d_C[i], sizeof(double)*nRows*nCols) );
+	}
+
+	makeAMatrix(A, nRows, midDim);
+    makeBMatrices(Bs, midDim, nCols, nMatrices);
+
+	// Create streams
+	cudaStream_t streams[nStreams];
+    for(int i=0; i<nStreams; i++) check( cudaStreamCreate(&streams[i]) );
+	
+	// Create timing events
+	cudaEvent_t start, stop;
+	check( cudaEventCreate(&start) );
+	check( cudaEventCreate(&stop) );
+	float time;
+
+	// Time the various legs 
+	timeH2DCopyForA(d_A, A, nRows*midDim);
+	timeH2DCopyForB(d_B[0], Bs, midDim*nCols);
+	timeD2HCopyForC(Cs, d_C[0], nRows*nCols);
+    timeH2DD2HCopyForBC(Bs, d_B[0], midDim*nCols, Cs, d_C[0], nRows*nCols);
+	timeKernel(d_A, d_B[0], d_C[0], nRows, nCols, midDim);
+	
+
+	check( cudaEventRecord(start, 0) );
+	// Copy A only once
+	check( cudaMemcpy(d_A, A, sizeof(double)*nRows*midDim, cudaMemcpyHostToDevice) );
+
+    int stmIdx = 0;	
+	for(int i=0; i<nMatrices; i++) {
+        check( cudaMemcpyAsync(d_B[stmIdx], &Bs[i*midDim*nCols], sizeof(double)*midDim*nCols, cudaMemcpyHostToDevice, streams[stmIdx]) );
+		launchKernel(nRows, nCols, midDim, d_A, d_B[stmIdx], d_C[stmIdx], streams[stmIdx]);
+		check( cudaMemcpyAsync(&Cs[i*nRows*nCols], d_C[stmIdx], sizeof(double)*nRows*nCols, cudaMemcpyDeviceToHost, streams[stmIdx]) );
+        stmIdx++;
+        stmIdx = stmIdx % nStreams;
+	}
+    
+	check( cudaEventRecord(stop, 0) );
+	
+	check( cudaDeviceSynchronize() );
+	check( cudaEventElapsedTime(&time, start, stop) );
+	cout << "Did " << nMatrices << " matrix multiplications and copies in " << time << "ms " << endl;
+	
+	// Check results
+	checkCs(nRows, nCols, midDim, nMatrices, Cs);
+	
+	delete[] A;
+	check( cudaFreeHost(Bs) );
+	check( cudaFreeHost(Cs) );
+	check( cudaFree(d_A) );
+	for(int i=0; i<nStreams; i++) {
+		check( cudaFree(d_B[i]) );
+		check( cudaFree(d_C[i]) );
+		check( cudaStreamDestroy(streams[i]) );
+	}
+	check( cudaEventDestroy(start) );
+	check( cudaEventDestroy(stop) );
+}
+
+#endif
